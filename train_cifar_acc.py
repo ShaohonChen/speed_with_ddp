@@ -83,6 +83,7 @@ def main(exp="1gpu"):
     start_train_time = time.time()
     stp_time = time.time()
     for ep in range(config["num_epoch"]):
+        epoch_time = time.time()
         # train model
         if accelerator.is_local_main_process:
             print(f"begin epoch {ep} training...")
@@ -111,6 +112,11 @@ def main(exp="1gpu"):
                 print(
                     f"train epoch {ep} [{stp}/{len(my_training_dataloader)}] | train loss {loss}"
                 )
+        accelerator.log(
+            {
+                "train epoch time": time.time() - epoch_time,
+            },
+        )
 
         # eval model
         if accelerator.is_local_main_process:
