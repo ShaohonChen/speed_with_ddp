@@ -2,6 +2,19 @@
 
 ## 实验命令
 
+**暂时无法使用 1kernal AMD EPYC 7R32 48-Core Processor**
+
+```
+accelerate launch --config_file=accelerate_configs/1cpu.yaml train_cifar_acc.py 1cpu
+```
+
+**暂时无法使用 16kernal AMD EPYC 7R32 48-Core Processor**
+
+```
+accelerate launch --config_file=accelerate_configs/16cpu.yaml train_cifar_acc.py 16cpu
+```
+
+
 **1XRTX3090 GPU**
 
 ```
@@ -43,19 +56,28 @@ accelerate launch --config_file=accelerate_configs/8gpu_4nvlink.yaml train_cifar
 
 **2node 4XRTX3090 2nvlink**
 
-node 0
+node 0 (172.16.6.4)
 
 ```
 accelerate launch --config_file=accelerate_configs/2n4g_n0.yaml train_cifar_acc.py 2n4gpu_2nvlink
 ```
 
-node 1
+node 1 (172.16.6.3)
 
 ```
 accelerate launch --config_file=accelerate_configs/2n4g_n1.yaml train_cifar_acc.py 2n4gpu_2nvlink
 ```
 
 **2node 16XRTX3090 bridge**
+
+node 0 (172.16.6.4)
+
 ```
-accelerate launch --config_file=accelerate_configs/8gpu_4nvlink.yaml train_cifar_acc.py 8gpu_4nvlink
+accelerate launch --config_file=accelerate_configs/2n8g_n0.yaml train_cifar_acc.py 2n8gpu_4nvlink
+```
+
+node 1 (172.16.6.3)
+
+```
+accelerate launch --config_file=accelerate_configs/2n8g_n1.yaml train_cifar_acc.py 2n8gpu_4nvlink
 ```
