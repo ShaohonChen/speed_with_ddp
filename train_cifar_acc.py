@@ -15,9 +15,10 @@ import torchvision
 from accelerate import Accelerator
 from accelerate.logging import get_logger
 import time
+import fire
 
 
-def main():
+def main(exp="1gpu"):
     # hyperparameters
     config = {
         "num_epoch": 5,
@@ -64,7 +65,7 @@ def main():
     )
 
     # Init accelerate with swanlab tracker
-    tracker = SwanLabTracker("SPEED_WITH_DDP", experiment_name="1GPU")
+    tracker = SwanLabTracker("SPEED_WITH_DDP", experiment_name=exp)
     accelerator = Accelerator(log_with=tracker)
     accelerator.init_trackers("SPEED_WITH_DDP", config=config)
     my_model, my_optimizer, my_training_dataloader, my_testing_dataloader = (
@@ -152,4 +153,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)
