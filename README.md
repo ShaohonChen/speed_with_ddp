@@ -28,5 +28,34 @@ accelerate launch --config_file=accelerate_configs/2gpu_2c.yaml train_cifar_acc.
 
 **4XRTX3090 2nvlink**
 ```
-accelerate launch --config_file=accelerate_configs/4gpu.yaml train_cifar_acc.py 4gpu
+accelerate launch --config_file=accelerate_configs/4gpu.yaml train_cifar_acc.py 4gpu_2nvlink
+```
+
+**4XRTX3090 bridge**
+```
+accelerate launch --config_file=accelerate_configs/4gpu_2c.yaml train_cifar_acc.py 4gpu_bridge
+```
+
+**8XRTX3090 bridge**
+```
+accelerate launch --config_file=accelerate_configs/8gpu_4nvlink.yaml train_cifar_acc.py 8gpu_4nvlink
+```
+
+**2node 4XRTX3090 2nvlink**
+
+node 0
+
+```
+accelerate launch --config_file=accelerate_configs/2n4g_n0.yaml train_cifar_acc.py 2n4gpu_2nvlink
+```
+
+node 1
+
+```
+accelerate launch --config_file=accelerate_configs/2n4g_n1.yaml train_cifar_acc.py 2n4gpu_2nvlink
+```
+
+**2node 16XRTX3090 bridge**
+```
+accelerate launch --config_file=accelerate_configs/8gpu_4nvlink.yaml train_cifar_acc.py 8gpu_4nvlink
 ```
