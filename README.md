@@ -14,7 +14,6 @@ accelerate launch --config_file=accelerate_configs/1cpu.yaml train_cifar_acc.py 
 accelerate launch --config_file=accelerate_configs/16cpu.yaml train_cifar_acc.py 16cpu
 ```
 
-
 **1XRTX3090 GPU**
 
 ```
