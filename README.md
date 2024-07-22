@@ -68,7 +68,7 @@ node 1 (172.16.6.3)
 accelerate launch --config_file=accelerate_configs/2n4g_n1.yaml train_cifar_acc.py 2n4gpu_2nvlink
 ```
 
-**2node 16XRTX3090 bridge**
+**2node 8XRTX3090 4nvlink**
 
 node 0 (172.16.6.4)
 
@@ -80,4 +80,18 @@ node 1 (172.16.6.3)
 
 ```
 accelerate launch --config_file=accelerate_configs/2n8g_n1.yaml train_cifar_acc.py 2n8gpu_4nvlink
+```
+
+**2node 8XRTX3090 4nvlink bf16**
+
+node 0 (172.16.6.4)
+
+```
+accelerate launch --config_file=accelerate_configs/2n8g_n0_bf16.yaml train_cifar_acc.py 2n8gpu_4nvlink_bf16
+```
+
+node 1 (172.16.6.3)
+
+```
+accelerate launch --config_file=accelerate_configs/2n8g_n1_bf16.yaml train_cifar_acc.py 2n8gpu_4nvlink_bf16
 ```
